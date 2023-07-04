@@ -33,6 +33,25 @@ function App() {
     setInput("")
   }
 
+  //Read to do from firebase
+  useEffect(()=>{
+    const q = query(collection(db, 'todos'))
+    const unsubscribe = onSnapshot(q, (querySnapshot)=>{
+      let  todosArr=[]
+      querySnapshot.forEach((doc) => {  
+        todosArr.push({...doc.data(), id:doc.id})
+    });
+    setTodos(todosArr)
+  })
+  return ()=>unsubscribe()},[])
+
+  //Update todo in in firebase
+  const toggleComplete =async(todo)=>{
+await updateDoc(doc(db, 'todos', todo.id), {
+  completed :!todo.completed  
+})
+  }
+
   return (
 
     <div className={style.bg}>
@@ -48,8 +67,8 @@ function App() {
           <button className={style.button}><AiOutlinePlus size={30} /></button>
         </form>
         <ul>
-          {todos.map((todo, index) => (
-            <Todo key={index} todo={todo} />
+          {todos.map((todo , index)=> (
+              <Todo key={index} todo={todo} toggleComplete={toggleComplete}/>
           ))}
         </ul>
         <p className={style.count}>You have {todos.length} todos</p>
