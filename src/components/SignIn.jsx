@@ -1,45 +1,62 @@
-import React, { useState, useEffect } from "react";
-import { Auth, signInWithEmailAndPassword } from "firebase/auth";
-import "firebase/compat/auth";
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
-import { db, storage, auth } from "./../firebase";
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { UserAuth } from '../context/AuthContext';
 
-const SignIn = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const Signin = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
-  const signIn = (e) => {
+  const { signIn } = UserAuth();
+
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log(userCredential);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    setError('');
+    try {
+      await signIn(email, password);
+      navigate('/home');
+    } catch (error) {
+      setError(error.message);
+      console.log(error.message);
+    }
   };
-
   return (
-    <div className="sign-in-container">
-      <form onSubmit={signIn}>
-        <h1>Log In to your Account</h1>
-        <input
-          type="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        ></input>
-        <input
-          type="password"
-          placeholder="Enter your password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        ></input>
-        <button type="submit">Log In</button>
+    <div className='max-w-[700px] mx-auto my-16 p-4'>
+      <div>
+        <h1 className='text-2xl font-bold py-2'>Sign in to your account</h1>
+        <p className='py-2'>
+          Don't have an account yet?
+          <Link to='/signup' className='underline text-blue-700'>
+            Sign Up.
+          </Link>
+        </p>
+      </div>
+      <form onSubmit={handleSubmit}>
+        <div className='flex flex-col py-2'>
+          <label className='py-2 font-medium'>Email Address</label>
+          <input
+            onChange={(e) => setEmail(e.target.value)}
+            className='border p-3'
+            type='email'
+            placeholder='Enter your Email'
+          />
+        </div>
+        <div className='flex flex-col py-2'>
+          <label className='py-2 font-medium'>Password</label>
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            className='border p-3'
+            type='password'
+            placeholder='Your Password'
+          />
+        </div>
+        <button className='border border-blue-500 bg-blue-600 hover:bg-blue-500 w-full p-4 my-2 text-white'>
+          Sign In
+        </button>
       </form>
-      <Link to={{ pathname: "/SignUp" }}>SignUp</Link>
     </div>
   );
 };
-
-export default SignIn;
+export default Signin;
