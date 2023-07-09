@@ -1,28 +1,33 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
-import Signin from './components/Signin';
+import { Routes, Route, useLocation } from 'react-router-dom';
+import SignIn from './components/SignIn';
 import Signup from './components/Signup';
 import { AuthContextProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Crud from './components/Crud';
+import { AnimatePresence } from 'framer-motion';
 
 const App = () => {
+  const location = useLocation();
+
   return (
     <div>
-      <AuthContextProvider>
-        <Routes>
-          <Route path='/' element={<Signin />} />
-          <Route path='/signup' element={<Signup />} />
-          <Route
-            path='/home'
-            element={
-              <ProtectedRoute>
-                <Crud />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </AuthContextProvider>
+      <AnimatePresence>
+        <AuthContextProvider>
+          <Routes key={location.pathname} location={location}>
+            <Route path='/' element={<SignIn />} />
+            <Route path='/signup' element={<Signup />} />
+            <Route
+              path='/home'
+              element={
+                <ProtectedRoute>
+                  <Crud />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </AuthContextProvider>
+      </AnimatePresence>
     </div>
   );
 };
