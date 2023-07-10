@@ -9,6 +9,7 @@ import {
   updateDoc,
   doc,
   addDoc,
+  deleteDoc
 } from "firebase/firestore";
 
 const style = {
@@ -60,6 +61,11 @@ function Crud() {
     });
   };
 
+  //Delete todo
+  const deleteTodo = async (id) => {
+    await deleteDoc(doc(db, "todos",id ))
+  }
+
   return (
     <div className={style.bg}>
       <div className={style.container}>
@@ -78,7 +84,11 @@ function Crud() {
         </form>
         <ul>
           {todos.map((todo, index) => (
-            <Todo key={index} todo={todo} toggleComplete={toggleComplete} />
+            <Todo 
+            key={index} 
+            todo={todo} 
+            toggleComplete={toggleComplete} 
+            deleteTodo={deleteTodo} />
           ))}
         </ul>
         <p className={style.count}>You have {todos.length} todos</p>
