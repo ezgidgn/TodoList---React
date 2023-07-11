@@ -1,9 +1,11 @@
 import React from 'react';
 import { FaRegTrashAlt } from 'react-icons/fa';
+import { FaCheck } from 'react-icons/fa';
+import AnimatedPage from './AnimatedPage';
 
 const style = {
-  li: 'flex justify-between bg-slate-200 p-4 my-2 capitalize',
-  liComplete: 'flex justify-between bg-slate-400 p-4 my-2 capitalize',
+  // li: 'flex justify-between bg-slate-200 p-4 my-2 capitalize',
+  // liComplete: 'flex justify-between bg-slate-400 p-4 my-2 capitalize',
   row: 'flex items-center',
   text: 'ml-2 cursor-pointer',
   textComplete: 'ml-2 cursor-pointer line-through',
@@ -12,28 +14,37 @@ const style = {
 
 const Todo = ({ todo, toggleComplete, deleteTodo }) => {
   return (
-    <li className={todo.completed ? style.liComplete : style.li}>
-      <div className={style.row}>
-        <input
-          onChange={() => toggleComplete(todo)}
-          type='checkbox'
-          checked={todo.completed ? 'checked' : ''}
-        />
-        <p
-          onClick={() => toggleComplete(todo)}
-          className={todo.completed ? style.textComplete : style.text}
+    <AnimatedPage>
+      <li className={todo.completed ? 'liComplete' : 'li'}>
+        <div className='flex items-center cursor-pointer relative'>
+          <input
+            id='check-box'
+            onChange={() => toggleComplete(todo)}
+            type='checkbox'
+            checked={todo.completed ? 'checked' : ''}
+            className=' appearance-none rounded-3xl h-6 w-6 border-2 border-[#FBBE28] z-12 '
+          />
+          <FaCheck
+            className=' absolute h-4 w-4 left-1 opacity-0 check-1 transition  '
+            onClick={() => toggleComplete(todo)}
+          />
+          <p
+            onClick={() => toggleComplete(todo)}
+            className={todo.completed ? style.textComplete : style.text}
+          >
+            {todo.text}
+          </p>
+        </div>
+        <button
+          onClick={() => {
+            deleteTodo(todo.id);
+          }}
+          className='bg-gradient-to-r from-[#ffdb81] to-[#ffab3e] rounded-full h-9 w-9 flex items-center justify-center text-black text-opacity-80'
         >
-          {todo.text}
-        </p>
-      </div>
-      <button
-        onClick={() => {
-          deleteTodo(todo.id);
-        }}
-      >
-        <FaRegTrashAlt />
-      </button>
-    </li>
+          <FaRegTrashAlt className='h-5 w-5' />
+        </button>
+      </li>
+    </AnimatedPage>
   );
 };
 

@@ -12,8 +12,8 @@ const App = () => {
 
   return (
     <div>
-      <AnimatePresence>
-        <AuthContextProvider>
+      <AuthContextProvider>
+        <AnimatePresence mode='wait'>
           <Routes key={location.pathname} location={location}>
             <Route path='/' element={<SignIn />} />
             <Route path='/signup' element={<Signup />} />
@@ -26,8 +26,8 @@ const App = () => {
               }
             />
           </Routes>
-        </AuthContextProvider>
-      </AnimatePresence>
+        </AnimatePresence>
+      </AuthContextProvider>
     </div>
   );
 };
