@@ -15,7 +15,8 @@ const ErrorModal = (props) => {
         <div className={classes.content}>
           {props.title && (
             <p>
-              Double Check Your Info Please<br />
+              Double Check Your Info Please
+              <br />
               {props.title}
             </p>
           )}

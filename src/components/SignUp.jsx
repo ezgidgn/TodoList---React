@@ -4,6 +4,7 @@ import { UserAuth } from '../context/AuthContext';
 import image from '../assets/images/joanna-kosinska-1_CMoFsPfso-unsplash.jpg';
 import AnimatedPage from './AnimatedPage';
 import ErrorModal from './UI/ErrorModal';
+
 const Signup = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -28,6 +29,7 @@ const Signup = () => {
   const errorHandler = () => {
     setError(null);
   };
+
   return (
     <div>
       {error && (
