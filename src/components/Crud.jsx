@@ -9,8 +9,8 @@ import {
   updateDoc,
   doc,
   addDoc,
-  deleteDoc,
-} from 'firebase/firestore';
+  deleteDoc
+} from "firebase/firestore";
 
 const style = {
   bg: 'h-screen w-screen p-4 bg-gradient-to-r from-[#d9d7ce] to-[#453a06]',
@@ -61,10 +61,10 @@ function Crud() {
     });
   };
 
-  //Delete todo in in firebase
-  const deleteTodo = async (todoID) => {
-    await deleteDoc(doc(db, 'todos', todoID));
-  };
+  //Delete todo
+  const deleteTodo = async (id) => {
+    await deleteDoc(doc(db, "todos",id ))
+  }
 
   return (
     <div className={style.bg}>
@@ -84,12 +84,11 @@ function Crud() {
         </form>
         <ul>
           {todos.map((todo, index) => (
-            <Todo
-              key={index}
-              todo={todo}
-              toggleComplete={toggleComplete}
-              deleteTodo={deleteTodo}
-            />
+            <Todo 
+            key={index} 
+            todo={todo} 
+            toggleComplete={toggleComplete} 
+            deleteTodo={deleteTodo} />
           ))}
         </ul>
         <p className={style.count}>You have {todos.length} todos</p>
