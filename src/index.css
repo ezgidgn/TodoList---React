@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 .li {
-  @apply flex justify-between bg-slate-200 p-4 my-2 capitalize rounded-lg w-[600px];
+  @apply flex justify-between bg-slate-200 p-4 my-2 capitalize rounded-lg max-h-[70px] w-[600px] shadow-xl;
 }
 
 .liComplete {
-  @apply flex justify-between bg-slate-400 p-4 my-2 capitalize rounded-lg w-[600px];
+  @apply flex justify-between bg-[#7d7d7d] p-4 my-2 capitalize rounded-lg max-h-[70px] w-[600px] shadow-xl;
 }
 
 #check-box:checked ~ .check-1 {
