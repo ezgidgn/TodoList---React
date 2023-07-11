@@ -13,11 +13,15 @@ import {
   updateDoc,
   doc,
   addDoc,
+
   deleteDoc,
 } from 'firebase/firestore';
 import AnimatedPage from './AnimatedPage';
 import { getAuth, signOut } from 'firebase/auth';
 import { useNavigate } from 'react-router';
+
+
+
 
 function Crud() {
   const [todos, setTodos] = useState([]);
@@ -91,10 +95,10 @@ function Crud() {
     });
   };
 
-  //Delete todo in in firebase
-  const deleteTodo = async (todoID) => {
-    await deleteDoc(doc(db, 'todos', todoID));
-  };
+  //Delete todo
+  const deleteTodo = async (id) => {
+    await deleteDoc(doc(db, "todos",id ))
+  }
 
   //logout
   const handleLogout = () => {
@@ -112,6 +116,7 @@ function Crud() {
   };
 
   return (
+
     <div className='text-center flex justify-center '>
       <img className=' w-full h-auto fixed top-0' src={image} alt='back' />
       <div
@@ -162,6 +167,7 @@ function Crud() {
           </ul>
           <p className='text-center p-2'>You have {todos.length} todos</p>
         </AnimatedPage>
+
       </div>
     </div>
   );

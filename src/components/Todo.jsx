@@ -97,4 +97,5 @@ const Todo = ({ todo, toggleComplete, deleteTodo }) => {
   );
 };
 
-export default Todo;
+
+export default Todo
