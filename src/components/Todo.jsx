@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { FaCheck } from 'react-icons/fa';
@@ -28,12 +29,18 @@ const Todo = ({ todo, toggleComplete, deleteTodo }) => {
             className=' absolute h-4 w-4 left-1 opacity-0 check-1 transition  '
             onClick={() => toggleComplete(todo)}
           />
+
+
+
+
+
           <p
             onClick={() => toggleComplete(todo)}
             className={todo.completed ? style.textComplete : style.text}
           >
             {todo.text}
           </p>
+
         </div>
         <button
           onClick={() => {
@@ -48,4 +55,5 @@ const Todo = ({ todo, toggleComplete, deleteTodo }) => {
   );
 };
 
-export default Todo;
+
+export default Todo
