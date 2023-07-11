@@ -127,7 +127,7 @@ function Crud() {
         </div>
       </AnimatedPage>
 
-      <div className='bg-slate-100 max-w-[700px] w-full m-auto rounded-md shadow-xl p-4  absolute left-[27vw] top-[27vh] backdrop-blur-sm bg-white/30 shadow-xl'>
+      <div className='bg-slate-100 max-w-[700px] w-full m-auto rounded-md p-4  absolute left-[27vw] top-[27vh] backdrop-blur-sm bg-white/30 shadow-xl'>
         <AnimatedPage>
           <h3 className=' text-3xl mb-5 font-bold text-center text-white top-[50px]'>
             What are you Doing Today?
