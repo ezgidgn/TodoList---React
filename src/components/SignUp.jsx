@@ -5,7 +5,7 @@ import image from '../assets/images/joanna-kosinska-1_CMoFsPfso-unsplash.jpg';
 import AnimatedPage from './AnimatedPage';
 import ErrorModal from './UI/ErrorModal';
 
-const Signup = () => {
+const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -96,4 +96,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default SignUp;
