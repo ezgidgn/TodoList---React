@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import SignIn from './components/SignIn';
-import SignUp from './components/SignUp';
+import Signup from './components/Signup';
 import { AuthContextProvider } from './context/AuthContext';
 import ProtectedRoute from './components/ProtectedRoute';
 import Crud from './components/Crud';
@@ -16,7 +16,7 @@ const App = () => {
         <AnimatePresence mode='wait'>
           <Routes key={location.pathname} location={location}>
             <Route path='/' element={<SignIn />} />
-            <Route path='/signup' element={<SignUp />} />
+            <Route path='/signup' element={<Signup />} />
             <Route
               path='/home'
               element={
